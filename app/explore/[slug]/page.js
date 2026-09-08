@@ -1,14 +1,20 @@
+import { INDICATORS } from "../../lib/indicators";
+import MapExplorer from "../../components/MapExplorer";
 import { notFound } from "next/navigation";
-import MapExplorer from "../../../components/MapExplorer";
-import { INDICATORS, INDICATOR_BY_SLUG } from "../../../lib/indicators";
 
 export function generateStaticParams() {
-  return INDICATORS.map((item) => ({ slug: item.slug }));
+  return INDICATORS.map((indicator) => ({
+    slug: indicator.slug,
+  }));
 }
 
-export default async function ExplorePage({ params }) {
+export default async function Page({ params }) {
   const { slug } = await params;
-  const indicator = INDICATOR_BY_SLUG[slug];
-  if (!indicator) notFound();
+  const indicator = INDICATORS.find((i) => i.slug === slug);
+
+  if (!indicator) {
+    notFound();
+  }
+
   return <MapExplorer indicator={indicator} />;
 }
