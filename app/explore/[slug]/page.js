@@ -1,5 +1,5 @@
-import { INDICATORS } from "../../lib/indicators";
-import MapExplorer from "../../components/MapExplorer";
+import { INDICATORS } from "../../../lib/indicators";
+import MapExplorer from "../../../components/MapExplorer";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
